@@ -132,9 +132,9 @@ public class TestHelper {
     public static List<String> getAllMenuItems(WebDriver driver, By loc_menu_items){
         List<WebElement> elements = Collections.EMPTY_LIST;
 
-        Log.info("Try to get all menu items at the Articles page");
+        Log.info("Try to get all menu items");
         elements = driver.findElements(loc_menu_items);
-        Log.info("Have got Articles page menu items - menu.size() = " + elements.size());
+        Log.info("Have got menu items - menu.size() = " + elements.size());
 
         if (elements == null)
             return Collections.EMPTY_LIST;

@@ -4,8 +4,7 @@
 
     <test name="homePage-tests">
         <classes>
-            <class name="Project.TestHabrHomePage"/>
-            <class name="Project.TestLoginRegistr"/>
-        </classes>
+            <class name="Project.TestEpamHomePage"/>
+         </classes>
     </test>
 </suite>

@@ -8,7 +8,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MainPage {
     private static Logger Log = LogManager.getLogger(MainPage.class);
 
@@ -21,6 +23,10 @@ public class MainPage {
     public void openMainPage (Session session) throws Exception {
         TestHelper.getURL(session.getWebDriver(), cfg.hostname());
         TestHelper.isPageLoad(session.getWaiter(), loc_upc_event, "Main Menu");
+    }
+
+    public String getTitle (Session session) {
+        return TestHelper.getTitle(session.getWebDriver());
     }
 
 }
