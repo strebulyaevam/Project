@@ -1,0 +1,32 @@
+[
+  {
+    "name": "No connection to Selenoid",
+    "matchedStatuses": ["broken", "failed"],
+    "traceRegex": ".*java.net.ConnectException: Connection timed out: connect.*"
+  },
+  {
+    "name": "No Data",
+    "matchedStatuses": ["broken"],
+    "traceRegex": ".*NullPointerException.*"
+  },
+  {
+    "name": "Product defects",
+    "matchedStatuses": ["failed"]
+  },
+  {
+    "name": "Test defects",
+    "matchedStatuses": ["broken"]
+  },
+  {
+    "name": "Skipped Tests",
+    "matchedStatuses": ["skipped"]
+  },
+  {
+    "name": "Unknown result",
+    "matchedStatuses": ["unknown"]
+  },
+  {
+    "name": "Success Tests",
+    "matchedStatuses": ["passed"]
+  }
+]

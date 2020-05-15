@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Auto-tests-otus" parallel="classes" thread-count="2">
+
+    <test name="homePage-tests">
+        <classes>
+            <class name="Project.TestHabrHomePage"/>
+            <class name="Project.TestLoginRegistr"/>
+        </classes>
+    </test>
+</suite>
