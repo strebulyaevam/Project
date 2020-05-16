@@ -11,7 +11,7 @@ public class PageSelector {
         switch(name){
             case "Статьи":
                 Log.info("Select menu: " + name);
-                return new ArticlesPage(driverServies);
+                return new EventPage(driverServies);
             default:
                 Log.error("Menu: " + name + "is not found");
                 return null;

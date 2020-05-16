@@ -19,12 +19,13 @@ public class MainPage {
 
     By loc_upc_event = By.xpath("//a[@class='evnt-filtered-link'][contains(text(), 'Upcoming events')]");
 
-    @Step
+    @Step ("open Main Page")
     public void openMainPage (Session session) throws Exception {
         TestHelper.getURL(session.getWebDriver(), cfg.hostname());
         TestHelper.isPageLoad(session.getWaiter(), loc_upc_event, "Main Menu");
     }
 
+    @Step ("get Title")
     public String getTitle (Session session) {
         return TestHelper.getTitle(session.getWebDriver());
     }

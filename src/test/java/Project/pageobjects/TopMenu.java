@@ -21,29 +21,33 @@ public class TopMenu {
     By loc_topmenu_item_byname(String item_name){ return By.xpath(" //ul[@class='evnt-navigation navbar-nav']//li/a[contains(text(), '" + item_name + "')]");}
     By loc_loginbtn = By.cssSelector(".evnt-header-button.login a");
 
-    @Step
+    @Step ("wait Until Top menu is Loaded")
     public void waitUntilLoad (Session session){
         TestHelper.isPageLoad(session.getWaiter(), loc_1st_item, "Top Menu");
     }
 
-    @Step("Проверка кликабельности элемента меню {menuname}")
+    @Step("Menu item selection: {menuname}")
     public void clickTopMenuItemByName (Session session, String menuname) throws Exception {
-        Log.info("Try to click on " + menuname + " menu item in TOP menu");
         TestHelper.clickOnElem(session.getWaiter(), loc_topmenu_item_byname(menuname), menuname + " menu item in TOP menu");
-        Log.info("Get menu " + menuname + " successfully");
     }
 
-    @Step
+    @Step ("click On Event Item")
+    public EventPage clickOnEventItem (Session session) throws Exception {
+        clickTopMenuItemByName (session, "Events");
+        return new EventPage();
+    }
+
+    @Step ("get All Top Menu Items")
     public List<String> getAllTopMenuItems(Session session){
         return TestHelper.getAllMenuItems(session.getWebDriver(), loc_top_menu);
     }
 
-    @Step("Проверка выбора элемента меню {item_name}")
+    @Step("Checking of selected item - {item_name}")
     public boolean isMenuItemSelected (Session session, String item_name){
         return session.getWebDriver().findElement(loc_topmenu_item_byname(item_name)).getAttribute("class").contains("active");
     }
 
-    @Step
+    @Step ("click On Login Button")
     public void clickOnLoginButton(Session session) throws Exception {
         TestHelper.clickOnElem(session.getWaiter(), loc_loginbtn, "Login btn");
     }
