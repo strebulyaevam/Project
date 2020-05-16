@@ -32,6 +32,7 @@ public class EventPage {
     @Step ("wait Until Event Page is Loaded")
     public EventPage waitUntilLoad (Session session){
         TestHelper.isPageLoad(session.getWaiter(), loc_upc_events_btn, "Upcoming Events");
+        waitLoader(session);
         return this;
     }
 
