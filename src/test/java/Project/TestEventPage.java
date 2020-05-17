@@ -89,6 +89,6 @@ public class TestEventPage  extends AbstractTestNGSpringContextTests {
 
     @AfterClass
     public void tearDown() {
-//        session.quit();
+        session.quit();
     }
 }

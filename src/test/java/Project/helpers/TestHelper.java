@@ -1,5 +1,6 @@
 package Project.helpers;
 
+import Project.Session;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -151,5 +152,16 @@ public class TestHelper {
     public static String getTitle (WebDriver driver) {
         return driver.getTitle();
     }
+
+    public static void waitLoader (WebDriverWait waiter, By loc_loader) {
+        try{
+            waiter.until(ExpectedConditions.invisibilityOfElementLocated(loc_loader));
+            Log.info("Elements are loaded");
+        } catch (Exception e) {
+            Log.error("Elements are not loaded", e);
+            throw e;
+        }
+    }
+
 
 }

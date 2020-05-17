@@ -47,20 +47,20 @@ public class EventPage {
     @Step ("wait Until Event Page is Loaded")
     public EventPage waitUntilLoad (Session session){
         TestHelper.isPageLoad(session.getWaiter(), loc_upc_events_btn, "Upcoming Events");
-        waitLoader(session);
+        TestHelper.waitLoader(session.getWaiter(), loc_loader);
         return this;
     }
 
     @Step ("click On Upcomming Event Button")
      public void clickOnUpcEventButton(Session session) throws Exception {
        TestHelper.clickOnElem(session.getWaiter(), loc_upc_events_btn, "Upcoming events btn");
-        waitLoader(session);
+        TestHelper.waitLoader(session.getWaiter(), loc_loader);
     }
 
     @Step ("click On Past Event Button")
     public void clickOnPstEventButton(Session session) throws Exception {
         TestHelper.clickOnElem(session.getWaiter(), loc_pst_events_btn, "Past events btn");
-        waitLoader(session);
+        TestHelper.waitLoader(session.getWaiter(), loc_loader);
     }
 
     @Step ("get Event Btn Count")
@@ -74,6 +74,13 @@ public class EventPage {
         Log.info("Try to get All upcoming events count from the Events list");
        return session.getWebDriver().findElements(loc_events_cards).size();
     }
+
+    @Step ("click On Event Card By Num")
+    public EventDetails clickOnEventCardByNum(Session session, int num) throws Exception {
+       TestHelper.clickOnFirstVisibleElem(session.getWebDriver(), loc_events_cards, "The 1-st event card");
+       return new EventDetails();
+    }
+
 
     @Step ("Check Event Card Сorrectness By Num ")
     public boolean checkEventCardСorrectnessByNum (Session session, int num) {
@@ -256,17 +263,6 @@ public class EventPage {
     public void clickOnLocationMenuItem(Session session, String locationName) throws Exception {
         TestHelper.clickOnElem(session.getWaiter(), loc_location, "location menu");
         TestHelper.clickOnElem(session.getWaiter(), loc_location_menu_item_by_name(locationName), "location menu item");
-    }
-
-    @Step ("Wait the loader")
-    public void waitLoader (Session session) {
-        try{
-            session.getWaiter().until(ExpectedConditions.invisibilityOfElementLocated(loc_loader));
-            Log.info("Events are loaded");
-        } catch (Exception e) {
-            Log.error("Events are not loaded", e);
-            throw e;
-        }
     }
 
 }
