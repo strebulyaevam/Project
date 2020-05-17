@@ -64,7 +64,7 @@ public class EventPage {
         WebElement cardDates;
 
         WebElement card = session.getWebDriver().findElements(loc_events_cards).get(num);
-        Log.info("Check top level structure of -" + num + "- card");
+        Log.info("Checing top level structure of -" + num + "- card");
         if (card.findElements(loc_card_sections).get(0).getAttribute("class").equals("evnt-card-heading")){
             cardHead = card.findElements(loc_card_sections).get(0);
         }
@@ -79,16 +79,9 @@ public class EventPage {
             Log.error("Card-body is not the second element at the card");
             return false;
         }
-        if (card.findElements(loc_card_sections).get(2).getAttribute("class").equals("evnt-card-body")){
-            cardBody = card.findElements(loc_card_sections).get(1);
-        }
-        else {
-            Log.error("Card-body is not the second element at the card");
-            return false;
-        }
         Log.info("Top level structure: heading and body of -" + num + "- card is successfully");
 
-        Log.info("Check heading structure of -" + num + "- card");
+        Log.info("Checking heading structure of -" + num + "- card");
         if (cardHead.findElements(loc_head_sections).get(0).getAttribute("class").equals("evnt-details-cell online-cell") ||
             cardHead.findElements(loc_head_sections).get(0).getAttribute("class").equals("evnt-details-cell location-cell"))
         {
@@ -104,7 +97,7 @@ public class EventPage {
             result = false;
         }
         if (cardHead.findElements(loc_head_sections).get(1).getAttribute("class").equals("evnt-details-cell language-cell")){
-            cardLang = card.findElements(loc_card_sections).get(1);
+            cardLang = cardHead.findElements(loc_head_sections).get(1);
             if (cardLang.findElement(loc_card_elem_text).getText().isEmpty())
             {
                 Log.error("Card-Language is empty");
@@ -118,10 +111,10 @@ public class EventPage {
         Log.info("Heading structure of -" + num + "- card is checked with result: " + result);
 
 
-        Log.info("Check body structure of -" + num + "- card");
+        Log.info("Checking body structure of -" + num + "- card");
         if (cardBody.findElements(loc_body_sections).get(0).getAttribute("class").equals("evnt-event-name"))
         {
-            cardEventName = cardHead.findElements(loc_head_sections).get(0);
+            cardEventName = cardBody.findElements(loc_body_sections).get(0);
             if (cardEventName.findElement(loc_card_elem_text).getText().isEmpty())
             {
                 Log.error("Card EventName is empty");
@@ -132,8 +125,9 @@ public class EventPage {
             Log.error("Event name is not the first element of the body");
             result = false;
         }
-        if (cardBody.findElements(loc_head_sections).get(1).getAttribute("class").equals("evnt-event-dates")){
-            cardDates = card.findElements(loc_card_sections).get(1);
+        if (cardBody.findElements(loc_body_sections).get(1).getAttribute("class").equals("evnt-event-dates"))
+        {
+            cardDates = cardBody.findElements(loc_body_sections).get(1);
             if (cardDates.findElements(loc_card_dates_elem_text).get(0).getAttribute("class").equals("date"))
             {
                 if (cardDates.findElements(loc_card_dates_elem_text).get(0).getText().isEmpty())
@@ -159,7 +153,7 @@ public class EventPage {
         }
         Log.info("Body structure of -" + num + "- card is checked with result: " + result);
 
-        Log.info("Check speakers for -" + num + "- card");
+        Log.info("Checking speakers for -" + num + "- card");
         try{
             card.findElement(loc_speaker_data);
         }
@@ -168,7 +162,7 @@ public class EventPage {
             result = false;
         }
         Log.info("Speakers of -" + num + "- card are checked with result: " + result);
-        Log.info("Checking of -" + num + "- card is completed with result: " + result);
+        Log.info("Total checking of -" + num + "- card is completed with result: " + result);
 
         return result;
     }
