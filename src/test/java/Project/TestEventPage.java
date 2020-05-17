@@ -59,6 +59,20 @@ public class TestEventPage  extends AbstractTestNGSpringContextTests {
         Log.info("Success - Structure of All Event cards is correct");
     }
 
+    @Story(value = "View of upcoming events")
+    @Test(description = "Check next week Events dates ")
+    @Severity(value = SeverityLevel.NORMAL)
+    public void checkNestWeekEventsDates() throws Exception {
+        mainPage.openMainPage(session);
+        EventPage eventPage = topMenu.clickOnEventItem(session).waitUntilLoad(session);
+        eventPage.clickOnEventButton(session);
+        Log.info("Checking if upcoming events amount is not null");
+        Assert.assertNotNull(eventPage.getAllUpcomingEventsCount(session));
+        Log.info("Success - upcoming events amount is not null");
+        Log.info("Checking dates of the next week Events");
+        Assert.assertTrue(eventPage.checkNextWeekCardDates(session));
+        Log.info("Success - Structure of All Event cards is correct");
+    }
 
     @AfterClass
     public void tearDown() {

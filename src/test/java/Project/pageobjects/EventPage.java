@@ -6,12 +6,20 @@ import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.springframework.stereotype.Component;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @Component
 public class EventPage {
@@ -28,6 +36,9 @@ public class EventPage {
     By loc_card_dates_elem_text = By.cssSelector(".evnt-dates-cell.dates span");
     By loc_speaker_data = By.cssSelector(".speakers div[data-name]");
     By loc_loader = By.cssSelector(".evnt-global-loader");
+    By loc_next_week_cards = By.xpath("//div[@class = 'evnt-cards-container']/*[contains(text(), 'Next week')]/..//div[@class = 'evnt-events-column cell-3']/child::div");
+    By loc_card_data = By.cssSelector(".evnt-dates-cell.dates .date");
+    By loc_card_event_name = By.cssSelector(".evnt-event-name span");
 
     @Step ("wait Until Event Page is Loaded")
     public EventPage waitUntilLoad (Session session){
@@ -39,6 +50,7 @@ public class EventPage {
     @Step ("click On Event Button")
      public void clickOnEventButton (Session session) throws Exception {
        TestHelper.clickOnElem(session.getWaiter(), loc_upc_events_btn, "Upcoming events btn");
+        waitLoader(session);
     }
 
     @Step ("get Event Btn Count")
@@ -189,6 +201,43 @@ public class EventPage {
             }
         }
         Log.info("All Upcoming Event Cards checking is completed with result: " + result);
+        return result;
+    }
+
+
+    public boolean checkNextWeekCardDates (Session session) throws ParseException {
+        boolean result = true;
+        Date eventDate;
+
+        Date curDate=new java.util.Date();
+        LocalDateTime localDateTime = curDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        curDate = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+        localDateTime = localDateTime.plusDays(7);
+        Date endWeekDate = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+
+
+        List<WebElement> elements = Collections.EMPTY_LIST;
+
+        elements = session.getWebDriver().findElements(loc_next_week_cards);
+
+        if (elements == null) {
+            Log.error("Next Week Events are not found");
+            return false;
+        }
+
+        for (WebElement element : elements) {
+            eventDate = new SimpleDateFormat("dd MMM yyyy", Locale.US).parse(element.findElement(loc_card_data).getText()); // Date - 20 May 2020
+            if (eventDate.compareTo(curDate) < 0) {
+                Log.error("Next Week Event date is before current date for event: " + element.findElement(loc_card_event_name).getText());
+                result = false;
+            }
+            else if (eventDate.compareTo(endWeekDate) > 0){
+                Log.error("Next Week Event date is after end of week date for event: " + element.findElement(loc_card_event_name).getText());
+                result = false;
+            }
+        }
+
+        Log.info("All next week Event Dates checking is completed with result: " + result);
         return result;
     }
 
