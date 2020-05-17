@@ -53,8 +53,10 @@ public class TestEventPage  extends AbstractTestNGSpringContextTests {
         Log.info("Checking if upcoming events amount is not null");
         Assert.assertNotNull(eventPage.getAllUpcomingEventsCount(session));
         Log.info("Success - upcoming events amount is not null");
-        Assert.assertTrue(eventPage.checkEventCardСorrectnessByNum(session, 0));
-        Log.info("Success - Structure of Event card is correct");
+        Log.info("Checking the structure of Event cards");
+//        Assert.assertTrue(eventPage.checkEventCardСorrectnessByNum(session, 2));
+        Assert.assertTrue(eventPage.checkAllUpcomingEventCards(session));
+        Log.info("Success - Structure of All Event cards is correct");
     }
 
 
