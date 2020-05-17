@@ -37,7 +37,7 @@ public class TestEventPage  extends AbstractTestNGSpringContextTests {
     public void checkEventCount() throws Exception {
         mainPage.openMainPage(session);
         EventPage eventPage = topMenu.clickOnEventItem(session).waitUntilLoad(session);
-        eventPage.clickOnEventButton(session);
+        eventPage.clickOnUpcEventButton(session);
         Log.info("Try to check Upcoming events amount");
         Assert.assertEquals(eventPage.getEventBtnCount(session), eventPage.getAllUpcomingEventsCount(session));
         Log.info("Upcoming events amount conform with Upcoming btn counting");
@@ -49,7 +49,7 @@ public class TestEventPage  extends AbstractTestNGSpringContextTests {
     public void checkEventCards() throws Exception {
         mainPage.openMainPage(session);
         EventPage eventPage = topMenu.clickOnEventItem(session).waitUntilLoad(session);
-        eventPage.clickOnEventButton(session);
+        eventPage.clickOnUpcEventButton(session);
         Log.info("Checking if upcoming events amount is not null");
         Assert.assertNotNull(eventPage.getAllUpcomingEventsCount(session));
         Log.info("Success - upcoming events amount is not null");
@@ -65,7 +65,7 @@ public class TestEventPage  extends AbstractTestNGSpringContextTests {
     public void checkNestWeekEventsDates() throws Exception {
         mainPage.openMainPage(session);
         EventPage eventPage = topMenu.clickOnEventItem(session).waitUntilLoad(session);
-        eventPage.clickOnEventButton(session);
+        eventPage.clickOnUpcEventButton(session);
         Log.info("Checking if upcoming events amount is not null");
         Assert.assertNotNull(eventPage.getAllUpcomingEventsCount(session));
         Log.info("Success - upcoming events amount is not null");
@@ -74,8 +74,21 @@ public class TestEventPage  extends AbstractTestNGSpringContextTests {
         Log.info("Success - Structure of All Event cards is correct");
     }
 
+    @Story(value = "View of upcoming events")
+    @Test(description = "Check Paset event count by location")
+    @Severity(value = SeverityLevel.NORMAL)
+    public void checkPastEventCount() throws Exception {
+        mainPage.openMainPage(session);
+        EventPage eventPage = topMenu.clickOnEventItem(session).waitUntilLoad(session);
+        eventPage.clickOnPstEventButton(session);
+        eventPage.clickOnLocationMenuItem(session, "Canada");
+        eventPage.clickOnPstEventButton(session);
+        Log.info("Try to check past events by location amount");
+        Assert.assertEquals(eventPage.getEventBtnCount(session), eventPage.getAllUpcomingEventsCount(session));
+    }
+
     @AfterClass
     public void tearDown() {
-        session.quit();
+//        session.quit();
     }
 }

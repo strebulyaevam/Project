@@ -27,6 +27,7 @@ public class EventPage {
     private static Logger Log = LogManager.getLogger(EventPage.class);
 
     By loc_upc_events_btn = By.xpath("//span[@class = 'evnt-tab-text desktop' and contains(text(), 'Upcoming Events')]");
+    By loc_pst_events_btn = By.xpath("//span[@class = 'evnt-tab-text desktop' and contains(text(), 'Past Events')]");
     By loc_select_events_btn_count = By.cssSelector("a.evnt-tab-link.nav-link.active>.evnt-tab-counter.evnt-label");
     By loc_events_cards = By.cssSelector(".evnt-cards-container .evnt-event-card");
     By loc_card_sections = By.cssSelector(".evnt-card-wrapper>div");
@@ -39,6 +40,9 @@ public class EventPage {
     By loc_next_week_cards = By.xpath("//div[@class = 'evnt-cards-container']/*[contains(text(), 'Next week')]/..//div[@class = 'evnt-events-column cell-3']/child::div");
     By loc_card_data = By.cssSelector(".evnt-dates-cell.dates .date");
     By loc_card_event_name = By.cssSelector(".evnt-event-name span");
+    By loc_location = By.cssSelector("#filter_location");
+    By loc_location_menu_item_by_name(String item_name){ return By.cssSelector("div[aria-labelledby='filter_location'] .form-check-label.group-items[data-value='" + item_name +"']");}
+
 
     @Step ("wait Until Event Page is Loaded")
     public EventPage waitUntilLoad (Session session){
@@ -47,9 +51,15 @@ public class EventPage {
         return this;
     }
 
-    @Step ("click On Event Button")
-     public void clickOnEventButton (Session session) throws Exception {
+    @Step ("click On Upcomming Event Button")
+     public void clickOnUpcEventButton(Session session) throws Exception {
        TestHelper.clickOnElem(session.getWaiter(), loc_upc_events_btn, "Upcoming events btn");
+        waitLoader(session);
+    }
+
+    @Step ("click On Past Event Button")
+    public void clickOnPstEventButton(Session session) throws Exception {
+        TestHelper.clickOnElem(session.getWaiter(), loc_pst_events_btn, "Past events btn");
         waitLoader(session);
     }
 
@@ -205,6 +215,7 @@ public class EventPage {
     }
 
 
+    @Step ("Check Next Week Card Dates")
     public boolean checkNextWeekCardDates (Session session) throws ParseException {
         boolean result = true;
         Date eventDate;
@@ -241,6 +252,11 @@ public class EventPage {
         return result;
     }
 
+    @Step ("click On Location Menu Item")
+    public void clickOnLocationMenuItem(Session session, String locationName) throws Exception {
+        TestHelper.clickOnElem(session.getWaiter(), loc_location, "location menu");
+        TestHelper.clickOnElem(session.getWaiter(), loc_location_menu_item_by_name(locationName), "location menu item");
+    }
 
     @Step ("Wait the loader")
     public void waitLoader (Session session) {

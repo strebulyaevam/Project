@@ -4,7 +4,7 @@
 
     <test name="homePage-tests">
         <classes>
-            <!--<class name="Project.TestEpamHomePage"/>-->
+            <class name="Project.TestEpamHomePage"/>
             <class name="Project.TestEventPage"/>
          </classes>
     </test>
