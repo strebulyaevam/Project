@@ -77,12 +77,12 @@ public class EventPage {
 
     @Step ("click On Event Card By Num")
     public EventDetails clickOnEventCardByNum(Session session, int num) throws Exception {
-       TestHelper.clickOnFirstVisibleElem(session.getWebDriver(), loc_events_cards, "The 1-st event card");
-       return new EventDetails();
+        session.getWebDriver().findElements(loc_events_cards).get(num).click();
+        return new EventDetails();
     }
 
 
-    @Step ("Check Event Card Сorrectness By Num ")
+    @Step ("Check -{num}- Event Card Сorrectness By Num")
     public boolean checkEventCardСorrectnessByNum (Session session, int num) {
         boolean result = true;
         WebElement cardHead;
