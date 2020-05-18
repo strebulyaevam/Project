@@ -37,6 +37,12 @@ public class TopMenu {
         return new EventPage();
     }
 
+    @Step ("click On Talks Library")
+    public TalksPage clickOnTalksLibItem (Session session) throws Exception {
+        clickTopMenuItemByName (session, "Talks Library");
+        return new TalksPage();
+    }
+
     @Step ("get All Top Menu Items")
     public List<String> getAllTopMenuItems(Session session){
         return TestHelper.getAllMenuItems(session.getWebDriver(), loc_top_menu);

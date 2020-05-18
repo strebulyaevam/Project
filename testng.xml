@@ -6,7 +6,8 @@
         <classes>
             <!--<class name="Project.TestEpamHomePage"/>-->
             <!--<class name="Project.TestEventPage"/>-->
-            <class name="Project.TestEventDetailPage"/>
+            <!--<class name="Project.TestEventDetailPage"/>-->
+            <class name="Project.TestTalkPage"/>
          </classes>
     </test>
 </suite>

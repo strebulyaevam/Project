@@ -51,7 +51,7 @@ public class TestEventPage  extends AbstractTestNGSpringContextTests {
         EventPage eventPage = topMenu.clickOnEventItem(session).waitUntilLoad(session);
         eventPage.clickOnUpcEventButton(session);
         Log.info("Checking if upcoming events amount is not null");
-        Assert.assertNotNull(eventPage.getAllUpcomingEventsCount(session));
+        Assert.assertTrue(eventPage.getAllUpcomingEventsCount(session)>0);
         Log.info("Success - upcoming events amount is not null");
         Log.info("Checking the structure of Event cards");
 //        Assert.assertTrue(eventPage.checkEventCardСorrectnessByNum(session, 2));
@@ -67,7 +67,7 @@ public class TestEventPage  extends AbstractTestNGSpringContextTests {
         EventPage eventPage = topMenu.clickOnEventItem(session).waitUntilLoad(session);
         eventPage.clickOnUpcEventButton(session);
         Log.info("Checking if upcoming events amount is not null");
-        Assert.assertNotNull(eventPage.getAllUpcomingEventsCount(session));
+        Assert.assertTrue(eventPage.getAllUpcomingEventsCount(session)>0);
         Log.info("Success - upcoming events amount is not null");
         Log.info("Checking dates of the next week Events");
         Assert.assertTrue(eventPage.checkNextWeekCardDates(session));
@@ -85,6 +85,7 @@ public class TestEventPage  extends AbstractTestNGSpringContextTests {
         eventPage.clickOnPstEventButton(session);
         Log.info("Try to check past events by location amount");
         Assert.assertEquals(eventPage.getEventBtnCount(session), eventPage.getAllUpcomingEventsCount(session));
+        Log.info("past events amount conform with past btn counting");
     }
 
     @AfterClass

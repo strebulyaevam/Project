@@ -21,7 +21,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-@Component
 public class EventPage {
 
     private static Logger Log = LogManager.getLogger(EventPage.class);
