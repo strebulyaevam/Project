@@ -60,16 +60,16 @@ public class TestTalkPage extends AbstractTestNGSpringContextTests {
         for (String link : links) {
             talkCard.openTalkCardByLink(session, link);
             talkCard.waitUntilLoad(session);
-            Log.info("Try to find Design categories for -" + i + "Talk");
+            Log.info("Try to find Design categories for -" + i + "- Talk");
             List<String> categories = talkCard.getCategories(session);
             Assert.assertTrue(categories.contains("Design"));
             Log.info("OK");
 
-            Log.info("Try to find Belarus location for -" + i + "Talk");
+            Log.info("Try to find Belarus location for -" + i + "- Talk");
             Assert.assertTrue(talkCard.getLocation(session).contains("Belarus"));
             Log.info("OK");
 
-            Log.info("Try to find English Language for -" + i + "Talk");
+            Log.info("Try to find English Language for -" + i + "- Talk");
             Assert.assertEquals(talkCard.getLanguage(session),"ENGLISH");
             Log.info("OK");
 
