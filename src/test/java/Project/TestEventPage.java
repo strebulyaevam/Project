@@ -62,7 +62,7 @@ public class TestEventPage  extends AbstractTestNGSpringContextTests {
     @Story(value = "View of upcoming events")
     @Test(description = "Check next week Events dates ")
     @Severity(value = SeverityLevel.NORMAL)
-    public void checkNestWeekEventsDates() throws Exception {
+    public void checkNextWeekEventsDates() throws Exception {
         mainPage.openMainPage(session);
         EventPage eventPage = topMenu.clickOnEventItem(session).waitUntilLoad(session);
         eventPage.clickOnUpcEventButton(session);

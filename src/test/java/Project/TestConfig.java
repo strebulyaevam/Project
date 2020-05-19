@@ -63,9 +63,9 @@ public class TestConfig {
         caps.setCapability("enableVNC", true);
         caps.setCapability("enableVideo", false);
 
-//        driver = new RemoteWebDriver(new URL("http://192.168.0.71:4444/wd/hub/"), caps);
+        driver = new RemoteWebDriver(new URL("http://192.168.0.71:4444/wd/hub/"), caps);
 
-        driver = new ChromeDriver();
+//        driver = new ChromeDriver();
 
         driver.manage().timeouts().implicitlyWait(4L, TimeUnit.SECONDS);
         driver.manage().window().maximize();

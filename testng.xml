@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Auto-tests-otus" parallel="classes" thread-count="2">
+<suite name="Auto-tests-otus" parallel="classes" thread-count="4">
 
     <test name="homePage-tests">
         <classes>
-            <!--<class name="Project.TestEpamHomePage"/>-->
-            <!--<class name="Project.TestEventPage"/>-->
-            <!--<class name="Project.TestEventDetailPage"/>-->
+            <class name="Project.TestEpamHomePage"/>
+            <class name="Project.TestEventPage"/>
+            <class name="Project.TestEventDetailPage"/>
             <class name="Project.TestTalkPage"/>
          </classes>
     </test>
