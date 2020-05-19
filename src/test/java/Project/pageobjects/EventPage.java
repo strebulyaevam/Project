@@ -263,6 +263,5 @@ public class EventPage {
         TestHelper.clickOnElem(session.getWaiter(), loc_location, "location menu");
         TestHelper.clickOnElem(session.getWaiter(), loc_location_menu_item_by_name(locationName), "location menu item");
     }
-
 }
 

@@ -1,6 +1,6 @@
 package Project;
 
-import Project.helpers.TestHelper;
+
 import Project.pageobjects.*;
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
@@ -9,9 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
-
-import java.io.FileWriter;
 import java.util.List;
 
 @Test(description = "Test Talk page")
@@ -74,10 +73,30 @@ public class TestTalkPage extends AbstractTestNGSpringContextTests {
             Log.info("OK");
 
             Log.info("Processed " + (++i) + " of " + links.size());
-
         }
-
     }
 
+    @Story(value = "View of search result")
+    @Test(description = "Check search result consistency")
+    @Severity(value = SeverityLevel.NORMAL)
+    public void checkSearchResult() throws Exception {
+        mainPage.openMainPage(session);
+        TalksPage talksPage = topMenu.clickOnTalksLibItem(session);
+        talksPage.waitUntilLoad(session);
+        talksPage.inputSearchText(session, "Azure");
+        talksPage.waitUntilLoad(session);
+        Log.info("Try to check founded Talks amount");
+        Assert.assertTrue(talksPage.getTalksCount(session)>0);
+        Log.info("Talks amount - " + talksPage.getTalksCount(session));
+
+        Log.info("Checking search the result consistency");
+        Assert.assertTrue(talksPage.checkTalkTitlesContainString(session, "Azure"));
+        Log.info("search the result consistency - OK");
+    }
+
+    @AfterClass
+    public void tearDown() {
+        session.quit();
+    }
 
 }

@@ -24,10 +24,12 @@ public class TalksPage {
     By loc_loader = By.cssSelector(".evnt-global-loader");
     By loc_more_filters = By.cssSelector(".evnt-toogle-filters-text.show-more span");
     By loc_talks_result_links = By.cssSelector("div.evnt-cards-container.with-sorting div.evnt-talks-column.cell-6 a");
+    By loc_talks_result_titles = By.cssSelector("div.evnt-cards-container.with-sorting div.evnt-talks-column.cell-6 h1 span");
 
     By loc_filter_category_item_by_name(String item_name){ return By.cssSelector("div[aria-labelledby='filter_category'] label[data-value='" + item_name +"']");}
     By loc_filter_location_item_by_name(String item_name){ return By.cssSelector("div[aria-labelledby='filter_location'] label[data-value='" + item_name +"']");}
     By loc_filter_language_item_by_name(String item_name){ return By.cssSelector("div[aria-labelledby='filter_language'] label[data-value='" + item_name +"']");}
+    By loc_search = By.cssSelector(".evnt-search-filter .evnt-text-fields.form-control.evnt-search");
 
 
     @Step("wait until TalksPage is Loaded")
@@ -68,7 +70,6 @@ public class TalksPage {
         return session.getWebDriver().findElements(loc_talks_result_links).size();
     }
 
-
     public List<String> findAllTalkLinks(Session session) throws Exception {
         List<WebElement> elements = Collections.EMPTY_LIST;
         elements = session.getWebDriver().findElements(loc_talks_result_links);
@@ -85,6 +86,29 @@ public class TalksPage {
             }
         }
         return links;
+    }
+
+    @Step ("input Search Text")
+    public void inputSearchText(Session session, String text) throws Exception {
+        TestHelper.sendKeysForElem(session.getWebDriver(), session.getWaiter(), loc_search, text, "Search by Talk Name");
+    }
+
+    public boolean checkTalkTitlesContainString(Session session, String text) throws Exception {
+        boolean result = true;
+        List<WebElement> elements = Collections.EMPTY_LIST;
+        elements = session.getWebDriver().findElements(loc_talks_result_titles);
+        Log.info("talks elements.size() = " + elements.size());
+
+        if (elements == null)
+            return false;
+
+        for (WebElement element : elements) {
+            if (!element.getText().contains(text)) {
+                Log.error("Search text '" + text + "' is absent in talk Title: " + element.getText());
+                result = false;
+            }
+        }
+        return result;
     }
 
 }
