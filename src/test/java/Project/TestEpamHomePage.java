@@ -56,7 +56,7 @@ public class TestEpamHomePage extends AbstractTestNGSpringContextTests {
         topMenu.waitUntilLoad(session);
         List<String> actualResult = topMenu.getAllTopMenuItems(session);
         Log.info("Try to check Epam home page menu items");
-        Assert.assertEquals(expResult, actualResult);
+        Assert.assertEquals(expResult, actualResult, "Epam home page menu items doesn't conform pattern");
         Log.info("Epam home page menu items are correct");
     }
 

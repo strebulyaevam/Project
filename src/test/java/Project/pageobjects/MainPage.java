@@ -18,11 +18,13 @@ public class MainPage {
     ProjectConfig cfg;
 
     By loc_upc_event = By.xpath("//a[@class='evnt-filtered-link'][contains(text(), 'Upcoming events')]");
+    By loc_loader = By.cssSelector(".evnt-global-loader");
 
     @Step ("open Main Page")
     public void openMainPage (Session session) throws Exception {
         TestHelper.getURL(session.getWebDriver(), cfg.hostname());
         TestHelper.isPageLoad(session.getWaiter(), loc_upc_event, "Main Menu");
+        TestHelper.waitLoader(session.getWaiter(), loc_loader);
     }
 
     @Step ("get Title")

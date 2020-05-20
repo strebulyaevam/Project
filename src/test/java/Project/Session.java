@@ -19,7 +19,7 @@ public class Session {
 
     @PostConstruct
     private void init() {
-        waiter = new WebDriverWait(webDriver, 4);
+        waiter = new WebDriverWait(webDriver, 8);
     }
 
     public WebDriver getWebDriver() {

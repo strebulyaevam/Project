@@ -41,26 +41,26 @@ public class TestEventDetailPage  extends AbstractTestNGSpringContextTests {
         EventPage eventPage = topMenu.clickOnEventItem(session).waitUntilLoad(session);
         eventPage.clickOnUpcEventButton(session);
         Log.info("Try to check Upcoming events amount");
-        Assert.assertEquals(eventPage.getEventBtnCount(session), eventPage.getAllUpcomingEventsCount(session));
+        Assert.assertEquals(eventPage.getEventBtnCount(session), eventPage.getAllUpcomingEventsCount(session), "Upcoming events amount doesn't conform with Upcoming btn counting");
         Log.info("Upcoming events amount conform with Upcoming btn counting");
 
-        Log.info(" Event Detail card will be opened");
+        Log.info(" Event Detail first card will be opened");
         EventDetails eventDetails = eventPage.clickOnEventCardByNum(session, 0);
         eventDetails.waitUntilLoad(session);
         Log.info("Checking if subject at the Event Detail card is not null");
-        Assert.assertFalse(eventDetails.eventSubjectIsEmpty(session));
+        Assert.assertFalse(eventDetails.eventSubjectIsEmpty(session), "subject at the Event Detail card is null");
         Log.info("Checking if 'Wish to attend' btn is at the Event Detail card");
-        Assert.assertTrue(eventDetails.attendBtnPresence(session));
+        Assert.assertTrue(eventDetails.attendBtnPresence(session), "'Wish to attend' btn is absent at the Event Detail card");
 
         eventDetails.clickShowMoreLink(session);
         Log.info("Checking if Event info is at the Event Detail card");
-        Assert.assertFalse(eventDetails.infoTextIsEmpty(session));
+        Assert.assertFalse(eventDetails.infoTextIsEmpty(session), "Event info is absent at the Event Detail card");
         Log.info("Checking if Event Date is at the Event Detail card");
-        Assert.assertFalse(eventDetails.eventDateIsEmpty(session));
+        Assert.assertFalse(eventDetails.eventDateIsEmpty(session), "Event Date is absent at the Event Detail card");
         Log.info("Checking if Event Time is at the Event Detail card");
-        Assert.assertFalse(eventDetails.eventTimeIsEmpty(session));
+        Assert.assertFalse(eventDetails.eventTimeIsEmpty(session), "Event Time is absent at the Event Detail card");
         Log.info("Checking if Event location is at the Event Detail card");
-        Assert.assertFalse(eventDetails.eventLocationIsEmpty(session));
+        Assert.assertFalse(eventDetails.eventLocationIsEmpty(session), "Event location is absent at the Event Detail card");
     }
 
     @AfterClass

@@ -5,6 +5,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -58,6 +59,7 @@ public class TestConfig {
         }
 
         DesiredCapabilities caps = new DesiredCapabilities();
+//        caps.setPlatform(Platform.WIN10);
         caps.setBrowserName(config.browser());
         caps.setVersion(config.browser_version());
         caps.setCapability("enableVNC", true);
@@ -67,7 +69,7 @@ public class TestConfig {
 
 //        driver = new ChromeDriver();
 
-        driver.manage().timeouts().implicitlyWait(4L, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(8L, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
         return driver;
