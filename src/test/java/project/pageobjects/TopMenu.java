@@ -16,7 +16,7 @@ public class TopMenu {
     private static Logger Log = LogManager.getLogger(TopMenu.class);
 
     By loc_1st_item = By.cssSelector("ul.evnt-navigation.navbar-nav>li.nav-item a[href*='calendar']");
-
+    By loc_loader = By.cssSelector(".evnt-global-loader");
     By loc_top_menu = By.cssSelector("ul.evnt-navigation li a");
     By loc_topmenu_item_byname(String item_name){ return By.xpath(" //ul[@class='evnt-navigation navbar-nav']//li/a[contains(text(), '" + item_name + "')]");}
     By loc_loginbtn = By.cssSelector(".evnt-header-button.login a");
@@ -24,6 +24,7 @@ public class TopMenu {
     @Step ("wait Until Top menu is Loaded")
     public void waitUntilLoad (Session session){
         TestHelper.isPageLoad(session.getWaiter(), loc_1st_item, "Top Menu");
+        TestHelper.waitLoader(session.getWaiter(), loc_loader);
     }
 
     @Step("Menu item selection: {menuname}")

@@ -44,7 +44,7 @@ public class TestEventDetailPage  extends AbstractTestNGSpringContextTests {
         Assert.assertEquals(eventPage.getEventBtnCount(session), eventPage.getAllUpcomingEventsCount(session), "Upcoming events amount doesn't conform with Upcoming btn counting");
         Log.info("Upcoming events amount conform with Upcoming btn counting");
 
-        Log.info(" Event Detail card will be opened");
+        Log.info(" Event Detail first card will be opened");
         EventDetails eventDetails = eventPage.clickOnEventCardByNum(session, 0);
         eventDetails.waitUntilLoad(session);
         Log.info("Checking if subject at the Event Detail card is not null");

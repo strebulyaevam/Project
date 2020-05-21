@@ -20,6 +20,8 @@ public class EventDetails {
     By loc_event_date = By.cssSelector("section.evnt-agenda-panel li.evnt-day-tab span");
     By loc_event_time = By.cssSelector("section.evnt-agenda-panel div.evnt-timeline-cell.agenda-time span");
     By loc_event_location = By.xpath("//div[div[div[i[@class='fa fa-map-marker']]]]//div[@class='evnt-icon-info']/h4");
+    By loc_moreinfo_caption = By.xpath("//p[@class = 'evnt-more-info-title' and contains(text(),\"About\")]");
+
 
 
     @Step("wait until Event details page is Loaded")
@@ -41,6 +43,7 @@ public class EventDetails {
     @Step("Click Show More link")
     public void clickShowMoreLink (Session session) throws Exception {
         TestHelper.clickOnElem(session.getWaiter(), loc_show_more, "Show more btn");
+        TestHelper.isPageLoad(session.getWaiter(), loc_moreinfo_caption, "More Info text");
     }
 
     @Step ("Check if info Text Is Empty")
