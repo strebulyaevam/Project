@@ -30,6 +30,7 @@ public class TopMenu {
     @Step("Menu item selection: {menuname}")
     public void clickTopMenuItemByName (Session session, String menuname) throws Exception {
         TestHelper.clickOnElem(session.getWaiter(), loc_topmenu_item_byname(menuname), menuname + " menu item in TOP menu");
+        TestHelper.waitLoader(session.getWaiter(), loc_loader);
     }
 
     @Step ("click On Event Item")
