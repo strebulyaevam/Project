@@ -63,7 +63,7 @@ public class TestConfig {
         caps.setCapability("enableVNC", true);
         caps.setCapability("enableVideo", false);
 
-        driver = new RemoteWebDriver(new URL("http://192.168.0.71:4444/wd/hub/"), caps);
+        driver = new RemoteWebDriver(new URL("http://23138f7b.ngrok.io:80/wd/hub/"), caps);
 
 //        driver = new ChromeDriver();
 
