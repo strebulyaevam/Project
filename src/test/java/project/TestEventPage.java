@@ -1,8 +1,8 @@
-package Project;
+package project;
 
-import Project.pageobjects.EventPage;
-import Project.pageobjects.MainPage;
-import Project.pageobjects.TopMenu;
+import project.pageobjects.EventPage;
+import project.pageobjects.MainPage;
+import project.pageobjects.TopMenu;
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

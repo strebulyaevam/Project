@@ -4,10 +4,10 @@
 
     <test name="homePage-tests">
         <classes>
-            <class name="Project.TestEpamHomePage"/>
-            <class name="Project.TestEventPage"/>
-            <class name="Project.TestEventDetailPage"/>
-            <class name="Project.TestTalkPage"/>
+            <class name="project.TestEpamHomePage"/>
+            <class name="project.TestEventPage"/>
+            <class name="project.TestEventDetailPage"/>
+            <class name="project.TestTalkPage"/>
          </classes>
     </test>
 </suite>

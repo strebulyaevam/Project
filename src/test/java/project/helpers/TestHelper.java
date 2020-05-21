@@ -1,6 +1,5 @@
-package Project.helpers;
+package project.helpers;
 
-import Project.Session;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;

@@ -1,9 +1,9 @@
-package Project;
+package project;
 
-import Project.pageobjects.MainPage;
+import project.pageobjects.MainPage;
 import com.google.common.collect.ImmutableList;
 import io.qameta.allure.*;
-import Project.pageobjects.TopMenu;
+import project.pageobjects.TopMenu;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +56,7 @@ public class TestEpamHomePage extends AbstractTestNGSpringContextTests {
         topMenu.waitUntilLoad(session);
         List<String> actualResult = topMenu.getAllTopMenuItems(session);
         Log.info("Try to check Epam home page menu items");
-        Assert.assertEquals(expResult, actualResult);
+        Assert.assertEquals(expResult, actualResult, "Epam home page menu items are NOT correct");
         Log.info("Epam home page menu items are correct");
     }
 

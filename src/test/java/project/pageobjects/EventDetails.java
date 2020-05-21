@@ -1,7 +1,7 @@
-package Project.pageobjects;
+package project.pageobjects;
 
-import Project.Session;
-import Project.helpers.TestHelper;
+import project.Session;
+import project.helpers.TestHelper;
 import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

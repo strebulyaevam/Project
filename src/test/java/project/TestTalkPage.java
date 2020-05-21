@@ -1,7 +1,7 @@
-package Project;
+package project;
 
 
-import Project.pageobjects.*;
+import project.pageobjects.*;
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
