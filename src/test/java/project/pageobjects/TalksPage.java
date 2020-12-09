@@ -101,7 +101,7 @@ public class TalksPage {
 
         for (WebElement element : elements) {
             if (!element.getText().contains(text)) {
-                Log.error("Search text '" + text + "' is absent in talk Title: " + element.getText());
+                Log.error("Search text '" + text + "' is absent in talk Title: " + element.getText().trim());
                 result = false;
             }
         }

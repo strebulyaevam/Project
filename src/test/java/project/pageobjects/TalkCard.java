@@ -44,7 +44,7 @@ public class TalkCard {
 
         List<String> categories = new ArrayList<>();
         for (WebElement element : elements) {
-            String category = element.getText();
+            String category = element.getText().trim();
             if (category != null && category.length() > 0) {
                 categories.add(category);
             }
@@ -54,11 +54,11 @@ public class TalkCard {
 
     @Step ("Get Location from TalkCard")
     public String getLocation (Session session) throws Exception {
-        return session.getWaiter().until(ExpectedConditions.presenceOfElementLocated(loc_location)).getText();
+        return session.getWaiter().until(ExpectedConditions.presenceOfElementLocated(loc_location)).getText().trim();
     }
 
     @Step ("Get Language from TalkCard")
     public String getLanguage (Session session) throws Exception {
-        return session.getWaiter().until(ExpectedConditions.presenceOfElementLocated(loc_language)).getText();
+        return session.getWaiter().until(ExpectedConditions.presenceOfElementLocated(loc_language)).getText().trim();
     }
 }

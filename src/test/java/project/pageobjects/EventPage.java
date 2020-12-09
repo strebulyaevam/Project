@@ -239,13 +239,13 @@ public class EventPage {
         }
 
         for (WebElement element : elements) {
-            eventDate = new SimpleDateFormat("dd MMM yyyy", Locale.US).parse(element.findElement(loc_card_data).getText()); // Date - 20 May 2020
+            eventDate = new SimpleDateFormat("dd MMM yyyy", Locale.US).parse(element.findElement(loc_card_data).getText().trim()); // Date - 20 May 2020
             if (eventDate.compareTo(curDate) < 0) {
-                Log.error("Next Week Event date is before current date for event: " + element.findElement(loc_card_event_name).getText());
+                Log.error("Next Week Event date is before current date for event: " + element.findElement(loc_card_event_name).getText().trim());
                 result = false;
             }
             else if (eventDate.compareTo(endWeekDate) > 0){
-                Log.error("Next Week Event date is after end of week date for event: " + element.findElement(loc_card_event_name).getText());
+                Log.error("Next Week Event date is after end of week date for event: " + element.findElement(loc_card_event_name).getText().trim());
                 result = false;
             }
         }
